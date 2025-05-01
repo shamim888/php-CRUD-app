@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include 'db.php'; ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,18 +19,24 @@
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <form action="">
+                                <div class="mb-3">
+                                    <label for="task" class="form-label">Task Name</label>
+                                    <input type="text" id="task" name="task" aria-describedby="taskHelp" class="form-control">
+                                    <div id="taskHelp" class="form-text">Put your tasks here</div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-success">Save</button>
                         </div>
                         </div>
                     </div>
