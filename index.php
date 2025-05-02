@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<?php include 'db.php'; ?>
+<?php include 'db.php'; 
+
+$sql = "select * from tasks";
+
+$rows = $db->query($sql);
+
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,14 +59,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php while($row = $rows->fetch_assoc()): ?>
                         <tr>
-                        <th scope="row">1</th>
-                        <td class="col-sm-8 col-md-10">do the task</td>
-                        <td>
-                            <a href="javascript:;" class="text-primary me-2"><i data-feather="edit"></i></a>
-                            <a href="javascript:;" class="text-danger"><i data-feather="trash-2"></i></a>
-                        </td>
+
+                            <!-- <?php var_dump($row); ?> -->
+
+                            <th scope="row"><?php echo $row['id'] ?></th>
+                            <td class="col-sm-8 col-md-10"><?php echo $row['name'] ?></td>
+                            <td>
+                                <a href="javascript:;" class="text-primary me-2"><i data-feather="edit"></i></a>
+                                <a href="javascript:;" class="text-danger"><i data-feather="trash-2"></i></a>
+                            </td>
                         </tr>
+                        <?php endwhile ?>
                     </tbody>
                 </table>
                     </div>
