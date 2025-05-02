@@ -1,1 +1,18 @@
-<?php echo "ok"; ?>
+<?php 
+include 'db.php';
+
+if(isset($_POST['submit'])){
+
+    $name = $_POST['task'];
+
+    $sql = "insert into tasks (name) values ('$name')";
+
+    $val = $db->query($sql);
+
+    if($val){
+
+        echo "<h1>Successfuly inserted</h1>";
+    }
+}
+
+?>
