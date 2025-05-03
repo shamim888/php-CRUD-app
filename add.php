@@ -11,7 +11,8 @@ if(isset($_POST['submit'])){
 
     if($val){
 
-        echo "<h1>Successfuly inserted</h1>";
+        header('location: index.php');
+        
     }
 }
 
