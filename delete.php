@@ -8,8 +8,8 @@ $sql = "delete from tasks where id = '$id'";
 
 $val = $db->query($sql);
 
-if($val) {
+if($val){
     header('location: index.php');
-};
+}
 
 ?>

@@ -65,8 +65,8 @@ $rows = $db->query($sql);
                             <th scope="row"><?php echo $row['id'] ?></th>
                             <td class="col-sm-8 col-md-10"><?php echo $row['name'] ?></td>
                             <td>
-                                <a href="javascript:;" class="text-primary me-2"><i data-feather="edit"></i></a>
-                                <a href="delete.php?id=<?php echo $row['id'];?>" class="text-danger"><i data-feather="trash-2"></i></a>
+                                <a href="update.php?id=<?php echo $row['id'] ?>" class="text-primary me-2"><i data-feather="edit"></i></a>
+                                <a href="delete.php?id=<?php echo $row['id'] ?>" class="text-danger"><i data-feather="trash-2"></i></a>
                             </td>
                         </tr>
                         <?php endwhile ?>
