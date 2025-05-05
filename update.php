@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<?php include 'db.php';
+<?php 
+
+include 'db.php';
 
 $id = $_GET['id'];
 
@@ -10,7 +12,20 @@ $rows = $db->query($sql);
 
 $row = $rows->fetch_assoc();
 
-var_dump($row);
+// var_dump($row);
+
+if(isset($_POST['submit'])){
+
+    $task = $_POST['task'];
+    
+    $sql2 = "update tasks set name ='$task' where id ='$id'";
+    
+    $db->query($sql2);
+    
+    header('location: index.php');
+
+}
+
 
 ?>
 <html lang="en">
@@ -32,7 +47,7 @@ var_dump($row);
                 <div class="">
                     <div class="mb-3">
                         <label for="task" class="form-label">Task Name</label>
-                        <input type="text" id="task" name="task" aria-describedby="taskHelp" class="form-control">
+                        <input type="text" id="task" name="task" aria-describedby="taskHelp" value="<?php echo $row['name']; ?>" class="form-control">
                         <div id="taskHelp" class="form-text">Update your tasks here</div>
                     </div>
                 </div>
