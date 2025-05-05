@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+
+<?php include 'db.php';
+
+$id = $_GET['id'];
+
+$sql = "select * from tasks where id='$id' ";
+
+$rows = $db->query($sql);
+
+$row = $rows->fetch_assoc();
+
+var_dump($row);
+
+?>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
