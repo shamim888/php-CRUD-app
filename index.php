@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<?php include 'db.php'; 
+<?php include 'db.php';
+
+$page = (isset($_GET['page']) ? $_GET['page'] : 1);
+
+$perPage = (isset($_GET['per-page']) && ($_GET['par-page']) <= 50 ? $_GET['per-page'] : 5);
+
+$start =
 
 $sql = "select * from tasks";
 
