@@ -3,7 +3,7 @@ include 'db.php';
 
 if(isset($_POST['submit'])){
 
-    $name = $_POST['task'];
+    $name = htmlspecialchars($_POST['task']);
 
     $sql = "insert into tasks (name) values ('$name')";
 
