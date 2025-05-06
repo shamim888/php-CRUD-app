@@ -5,10 +5,15 @@ $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 
 $perPage = (isset($_GET['per-page']) && ($_GET['par-page']) <= 50 ? $_GET['per-page'] : 5);
 
-$start =
+$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
-$sql = "select * from tasks";
+$sql = "select * from tasks limit ".$start.", ".$perPage." ";
 
+$total = $db->query("select * from tasks")->num_rows;
+
+$pages = ceil($total / $perPage);
+
+echo $pages = $total / $perPage;
 $rows = $db->query($sql);
 
 ?>
@@ -54,31 +59,37 @@ $rows = $db->query($sql);
 
                 <div class="card shadow-sm">
                     <div class="card-body">
-                    <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Task</th>
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while($row = $rows->fetch_assoc()): ?>
-                        <tr>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Task</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while($row = $rows->fetch_assoc()): ?>
+                                <tr>
 
-                            <!-- <?php var_dump($row); ?> -->
+                                    <!-- <?php var_dump($row); ?> -->
 
-                            <th scope="row"><?php echo $row['id'] ?></th>
-                            <td class="col-sm-8 col-md-10"><?php echo $row['name'] ?></td>
-                            <td>
-                                <a href="update.php?id=<?php echo $row['id'] ?>" class="text-primary me-2"><i data-feather="edit"></i></a>
-                                <a href="delete.php?id=<?php echo $row['id'] ?>" class="text-danger"><i data-feather="trash-2"></i></a>
-                            </td>
-                        </tr>
-                        <?php endwhile ?>
-                    </tbody>
-                </table>
+                                    <th scope="row"><?php echo $row['id'] ?></th>
+                                    <td class="col-sm-8 col-md-10"><?php echo $row['name'] ?></td>
+                                    <td>
+                                        <a href="update.php?id=<?php echo $row['id'] ?>" class="text-primary me-2"><i data-feather="edit"></i></a>
+                                        <a href="delete.php?id=<?php echo $row['id'] ?>" class="text-danger"><i data-feather="trash-2"></i></a>
+                                    </td>
+                                </tr>
+                                <?php endwhile ?>
+                            </tbody>
+                        </table>
                     </div>
+                <div class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <?php for($i = 1; $i <= $pages; $i++): ?>
+                        <li><a href="?page=<?php echo $i ?>&per-page=<?php echo $perPage ?>"><?php echo $i; ?></a></li>
+                        <?php endfor; ?>
+                    </ul>
                 </div>
             </div>
         </div>
