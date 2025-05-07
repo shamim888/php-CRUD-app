@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <?php include 'db.php';
 
-$page = (isset($_GET['page']) ? (int)$_GET['page'] : 1);
+if(isset($_POST['search'])){
+    
+    $name = htmlspecialchars($_POST['search']);
 
-$perPage = (isset($_GET['per-page']) && (int)($_GET['per-page']) <= 50 ? (int)$_GET['per-page'] : 5);
-
-$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
-
-$sql = "select * from tasks limit ".$start.", ".$perPage." ";
-
-$total = $db->query("select * from tasks")->num_rows;
-
-$pages = ceil($total / $perPage);
-
-// echo $pages = $total / $perPage;
-$rows = $db->query($sql);
+    $sql = "select * from tasks where name like %%name%";
+    
+    $rows = $db->query($sql);
+}
 
 ?>
 <html lang="en">
@@ -55,12 +49,13 @@ $rows = $db->query($sql);
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                         <div class="search-container">
-                            <input type="text" class="form-control search-input" placeholder="Search...">
+                            <input type="text" name="search" id="search" class="form-control search-input" placeholder="Search...">
                             <i class="fas fa-search search-icon"></i>
                         </div>
                         </div>
                     </div>
                 </form>
+                <?php if(mysqli_num_rows($rows) < 0): ?>
                 <div class="d-flex justify-content-between align-items-center px-0 py-4">
                     <button type="button" class=" btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Task</button>
                     <button type="button" class=" btn btn-light" onclick="print()"><span ><i data-feather="printer" style="width:18px; height:18px; margin-right:8px;"></i></span>Print</button>
