@@ -32,7 +32,7 @@ $rows = $db->query($sql);
                 <h2 class="text-primary text-center fs-3 fw-bold py-5">A Easy Todo List</h2>
                 <div class="d-flex justify-content-between align-items-center px-0 py-4">
                     <button type="button" class=" btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Task</button>
-                    <button type="button" class=" btn btn-light"><span ><i data-feather="printer" style="width:18px; height:18px; margin-right:8px;"></i></span>Print</button>
+                    <button type="button" class=" btn btn-light" onclick="print()"><span ><i data-feather="printer" style="width:18px; height:18px; margin-right:8px;"></i></span>Print</button>
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,10 +84,11 @@ $rows = $db->query($sql);
                             </tbody>
                         </table>
                     </div>
-                <div class="d-flex justify-content-center">
+                </div>
+                <div class="d-flex justify-content-center pt-4">
                     <ul class="pagination">
                         <?php for($i = 1; $i <= $pages; $i++): ?>
-                        <li><a href="?page=<?php echo $i ?>&per-page=<?php echo $perPage; ?>"><?php echo $i; ?></a></li>
+                        <li class="page-item"><a class="page-link" href="?page=<?php echo $i ?>&per-page=<?php echo $perPage; ?>"><?php echo $i; ?></a></li>
                         <?php endfor; ?>
                     </ul>
                 </div>
