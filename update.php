@@ -53,6 +53,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
                     <button type="submit" name="submit" class="btn btn-success">Update</button>
+                    <a href="index.php" class="btn btn-warning text-white ms-2">Back</a>
                 </div>
             </form>
         </div>
